@@ -1,0 +1,63 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "identifier"
+dynamic = ["version"]
+description = 'Identifies if the length is right'
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = []
+authors = [
+  { name = "Ilya Biryuk", email = "ilya.biryuk2005@icloud.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+  "tvdb_v4_official"
+]
+
+[project.urls]
+Documentation = "https://github.com/Ilya Biryuk/identifier#readme"
+Issues = "https://github.com/Ilya Biryuk/identifier/issues"
+Source = "https://github.com/Ilya Biryuk/identifier"
+
+[tool.hatch.version]
+path = "src/identifier/__about__.py"
+
+[tool.hatch.envs.types]
+extra-dependencies = [
+  "mypy>=1.0.0",
+]
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/identifier tests}"
+
+[tool.coverage.run]
+source_pkgs = ["identifier", "tests"]
+branch = true
+parallel = true
+omit = [
+  "src/identifier/__about__.py",
+]
+
+[tool.coverage.paths]
+identifier = ["src/identifier", "*/identifier/src/identifier"]
+tests = ["tests", "*/identifier/tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+  "no cov",
+  "if __name__ == .__main__.:",
+  "if TYPE_CHECKING:",
+]
